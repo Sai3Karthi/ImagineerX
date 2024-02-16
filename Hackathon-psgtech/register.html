@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+    /* Base styles */
+body {
+  font-family: sans-serif;
+  background-color: #f2f2f2; /* Light background */
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+h1, p {
+  text-align: center;
+}
+
+/* Orange Accents */
+.account-types {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 40px;
+}
+
+.account-type {
+  background-color: #fff;
+  border: 1px solid #eee;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease-in-out;
+}
+
+.account-type:hover {
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+.business {
+  border-color: #f19400; /* Warm orange */
+}
+
+.business h2 {
+  color: #f19400;
+}
+
+.business ul li {
+  color: #f19400;
+}
+
+.professional {
+  border-color: #dd5800; /* Deep orange */
+}
+
+.professional h2 {
+  color: #dd5800;
+}
+
+.professional ul li {
+  color: #dd5800;
+}
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  margin-top: 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #f19400; /* Warm orange for business */
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn:hover {
+  background-color: #dd5800; /* Deep orange on hover */
+}
+
+.professional .btn {
+  background-color: #dd5800; /* Deep orange for professional */
+}
+
+/* Disclaimer */
+.disclaimer {
+  text-align: center;
+  margin-top: 20px;
+  color: #777;
+}
+
+/* You can further customize these styles to match your brand and preferences */
+
+</style>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to [Your Website Name]</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to [Your Website Name]</h1>
+        <p>[Your Website Description]</p>
+
+        <div class="account-types">
+            <div class="account-type business">
+                <h2>Business Account</h2>
+                <p>Ideal for growing companies and teams, manage your brand, create campaigns, and reach new customers.</p>
+                <ul>
+                    <li>Team collaboration tools</li>
+                    <li>Advanced analytics and insights</li>
+                    <li>Dedicated customer support</li>
+                    <li>Custom branding options</li>
+                    <li>And much more...</li>
+                </ul>
+                <a href="signup-business.html" class="btn btn-primary">Get Started</a>
+            </div>
+
+            <div class="account-type professional">
+                <h2>Personal Account</h2>
+                <p>Empower your individual career, showcase your talent, and connect with new opportunities.</p>
+                <ul>
+                    <li>Personalized profile customization</li>
+                    <li>Portfolio creation and management</li>
+                    <li>Job board access and networking tools</li>
+                    <li>Professional development resources</li>
+                    <li>And much more...</li>
+                </ul>
+                <a href="signup-personal.html" class="btn btn-primary">Get Started</a>
+            </div>
+        </div>
+
+        <p class="disclaimer">Still unsure? No worries! Explore our help center or contact us.</p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

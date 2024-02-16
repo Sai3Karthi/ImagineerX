@@ -3,102 +3,50 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Schedule Meeting</title>
+  <title>Read Excel File</title>
 </head>
 <body>
   <input type="file" id="fileInput" accept=".xlsx">
-  <button id="createMeetingBtn">Create Meeting</button>
+  <button id="readFileBtn">Read File</button>
   <div id="output"></div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js"></script>
   <script>
-    document.getElementById('createMeetingBtn').addEventListener('click', function() {
+    document.getElementById('readFileBtn').addEventListener('click', function() {
         var fileInput = document.getElementById('fileInput');
         var outputDiv = document.getElementById('output');
-
+        
         var file = fileInput.files[0];
+        if (!file) {
+            outputDiv.innerText = "Please select a file.";
+            return;
+        }
+        
         var reader = new FileReader();
-
+        
         reader.onload = function(e) {
             var data = new Uint8Array(e.target.result);
             var workbook = XLSX.read(data, { type: 'array' });
 
             var sheetName = workbook.SheetNames[0];
             var worksheet = workbook.Sheets[sheetName];
-            var scheduleData = XLSX.utils.sheet_to_json(worksheet);
+            var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
 
-            var bestTime = findBestMeetingTime(scheduleData);
-            outputDiv.innerText = bestTime;
+            var tableHtml = "<table border='1'>";
+            for (var i = 0; i < jsonData.length; i++) {
+                tableHtml += "<tr>";
+                for (var j = 0; j < jsonData[i].length; j++) {
+                    tableHtml += "<td>" + jsonData[i][j] + "</td>";
+                }
+                tableHtml += "</tr>";
+            }
+            tableHtml += "</table>";
+
+            outputDiv.innerHTML = tableHtml;
         };
 
         reader.readAsArrayBuffer(file);
     });
-
-    document.getElementById('fileInput').addEventListener('change', function() {
-        var file = this.files[0];
-        if (file) {
-            var reader = new FileReader();
-            reader.onload = function(e) {
-                var data = new Uint8Array(e.target.result);
-                var workbook = XLSX.read(data, { type: 'array' });
-
-                var sheetName = workbook.SheetNames[0];
-                var worksheet = workbook.Sheets[sheetName];
-                var scheduleData = XLSX.utils.sheet_to_json(worksheet);
-
-                var bestTime = findBestMeetingTime(scheduleData);
-                document.getElementById('output').innerText = bestTime;
-            };
-            reader.readAsArrayBuffer(file);
-        }
-    });
-
-    function findBestMeetingTime(scheduleData) {
-        const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
-        let bestTime = { day: "", time: "", availableUsers: 0 };
-
-        for (const day of days) {
-            for (let hour = 8; hour < 20; hour++) { // Assuming working hours from 8 AM to 8 PM
-                const timeSlot = `${day} (${hour}:00-${hour + 1}:00)`;
-                let availableCount = 0;
-
-                for (const user of scheduleData) {
-                    const startKey = `${day} (Start)`;
-                    const endKey = `${day} (End)`;
-                    const startTime = user[startKey];
-                    const endTime = user[endKey];
-
-                    if (timeInRange(startTime, endTime, hour)) {
-                        availableCount++;
-                    }
-                }
-
-                if (availableCount > bestTime.availableUsers) {
-                    bestTime = { day, time: `${hour}:00-${hour + 1}:00`, availableUsers: availableCount };
-                }
-            }
-        }
-
-        return `Best time for meeting: ${bestTime.day}, ${bestTime.time} (${bestTime.availableUsers} users available)`;
-    }
-
-    function timeInRange(startTime, endTime, hour) {
-    if (!startTime || !endTime) return false; // Check if either start or end time is missing or undefined
-
-    // Ensure startTime and endTime are strings before splitting
-    startTime = String(startTime);
-    endTime = String(endTime);
-
-    // Check if startTime and endTime are non-empty strings
-    if (startTime.trim() === '' || endTime.trim() === '') return false;
-
-    // Extract hours from the time strings
-    const startHour = parseInt(startTime.split(':')[0]);
-    const endHour = parseInt(endTime.split(':')[0]);
-
-    // Check if the given hour is within the range
-    return startHour <= hour && hour < endHour;
-    }
   </script>
 </body>
 </html>
