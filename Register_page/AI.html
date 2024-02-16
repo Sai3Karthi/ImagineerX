@@ -15,14 +15,14 @@
 
   <script>
     // Replace with your API key
-    const API_KEY = "AIzaSyBqLquqQi0FH5IogK4kLEm0Rgj1k9ZGQtE";
+    const API_KEY = "iron-burner-412609";
 
     async function generateText() {
       const prompt = document.getElementById("prompt").value;
 
       // Configure the GoogleGenerativeAI model
       const genAI = new GoogleGenerativeAI(API_KEY);
-      const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+      const model = genAI.getGenerativeModel({ model: "gemini-pro-vision" });
 
       try {
         // Send the prompt to the model and wait for response
