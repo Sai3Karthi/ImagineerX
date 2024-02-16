@@ -1,4 +1,5 @@
-import vertexai
+from vertexai import VertexAI
+
 from vertexai.preview.generative_models import GenerativeModel
 
 def summarize_reviews(prompt):
