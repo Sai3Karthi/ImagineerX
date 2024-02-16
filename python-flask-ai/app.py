@@ -28,7 +28,7 @@ def summarize_reviews(prompt):
         print(f"Error occurred: {e}")
         return ""
 
-if _name_ == "_main_":
+if __name__ == "__main__":
     user_prompt = input("Enter your prompt: ")
 
     if user_prompt.strip():
