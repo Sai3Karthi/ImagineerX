@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Read Excel File</title>
+</head>
+<body>
+  <div id="output"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js"></script>
+  <script>
+    // Function to fetch the predefined Excel file
+    function fetchExcelFile(url, callback) {
+      var xhr = new XMLHttpRequest();
+      xhr.open("GET", url, true);
+      xhr.responseType = "arraybuffer";
+
+      xhr.onload = function (e) {
+        if (xhr.status === 200) {
+          var data = new Uint8Array(xhr.response);
+          callback(data);
+        }
+      };
+
+      xhr.send();
+    }
+
+    // Define the URL of the predefined Excel file
+    var excelFileURL = "testdata.xlsx";
+
+    // Fetch the Excel file and process it
+    fetchExcelFile(excelFileURL, function (data) {
+      var workbook = XLSX.read(data, { type: "array" });
+
+      var sheetName = workbook.SheetNames[0];
+      var worksheet = workbook.Sheets[sheetName];
+      var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+
+      var tableHtml = "<table border='1'>";
+      for (var i = 0; i < jsonData.length; i++) {
+        tableHtml += "<tr>";
+        for (var j = 0; j < jsonData[i].length; j++) {
+          tableHtml += "<td>" + jsonData[i][j] + "</td>";
+        }
+        tableHtml += "</tr>";
+      }
+      tableHtml += "</table>";
+
+      // Display the table in the output div
+      document.getElementById("output").innerHTML = tableHtml;
+    });
+  </script>
+</body>
+</html>
