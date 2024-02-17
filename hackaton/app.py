@@ -109,6 +109,7 @@ def index():
             user_start_time = request.form['start_time']
             # Read Excel file using pandas
             excel_file_path = "testdata.xlsx"  # Replace with the path to your Excel file
+            print("Current Working Directory:", os.getcwd())
             schedule_data = pd.read_excel(excel_file_path)
 
             # Pass schedule_data and user_start_time to summarize_reviews function
@@ -122,5 +123,7 @@ def index():
     # If method is GET or no file is processed yet, render the template with empty output
     return render_template('index.html', output="")
 
+
 if __name__ == "__main__":
     app.run(debug=True)
+    os.getcwd()
