@@ -93,8 +93,8 @@ function processExcelData(workbook) {
 
     for (let dayIndex = 0; dayIndex < daysOfWeek.length; dayIndex++) {
       const startColIndex = 2 + dayIndex * 2;
-      const startTimeCell = sheetData[`${XLSX.utils.encode_col(startColIndex - 1)}${row}`];
-      const endTimeCell = sheetData[`${XLSX.utils.encode_col(startColIndex)}${row}`];
+      const startTimeCell = sheetData[`${XLSX.utils.encode_col(startColIndex + 1)}${row}`];
+      const endTimeCell = sheetData[`${XLSX.utils.encode_col(startColIndex + 2)}${row}`];
 
       // Log the cell values for debugging
       console.log(`  ${daysOfWeek[dayIndex]}: ${XLSX.utils.encode_col(startColIndex)}${row} - Start: ${startTimeCell ? startTimeCell.v : 'N/A'}, End: ${endTimeCell ? endTimeCell.v : 'N/A'}`);
