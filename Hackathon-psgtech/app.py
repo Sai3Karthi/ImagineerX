@@ -42,8 +42,8 @@ def signup_process():
         return render_template('signup.html', message='Email or username already exists. Please choose a different one.')
 
     # Add new user to the DataFrame
-    new_user = pd.Series({'Name': username, 'email': email, 'password': password})
-    df = df.append(new_user, ignore_index=True)
+    new_user = pd.DataFrame({'Name': [username], 'email': [email], 'password': [password]})
+    df = pd.concat([df, new_user], ignore_index=True)
 
     # Update the Excel file
     df.to_excel(excel_file_path, index=False)
