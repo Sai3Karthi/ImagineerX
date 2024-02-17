@@ -1,2 +1,2 @@
 import os
-print(os.getcwd())
+print("hahahaha",os.getcwd())
