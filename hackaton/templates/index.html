@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate Best Meeting Time</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #303035;
+            color: #f5f5f5;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            margin-top: 50px;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input[type="time"] {
+            padding: 5px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: none;
+            background-color: #fff;
+            color: #0e0e10;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .output-container {
+            margin-top: 50px;
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            text-align: left; /* Align output text to the left */
+        }
+
+        pre.output {
+            white-space: pre-wrap;
+            margin: 0; /* Remove default margin */
+            font-size: 20px; /* Adjust font size */
+            color: #0e0e10; /* Change text color */
+            line-height: 1.5; /* Set line height for better readability */
+            padding: 10px; /* Add padding for better spacing */
+            overflow-x: auto; /* Allow horizontal scrolling if needed */
+            max-height: 300px; /* Limit maximum height of output container */;
+            font-weight: 1;
+        }
+
+        .confirm-container {
+            margin-top: 20px;
+        }
+
+        .confirm {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .outtext{
+            color: black;
+        }
+        .AI{
+            color: purple;
+            margin: none;
+            border: none;
+            transition: all 0.15s;
+            background-color: none;
+        }
+        .AI:hover{
+            text-shadow: #303035;
+            font-size: 60px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Use <span class=" AI ">AI</span> to Generate Your Best Meeting Time</h1>
+    <form method="POST">
+        <label for="start_time">Enter Your Preferred Start Time:</label>
+        <input type="time" id="start_time" name="start_time" required>
+        <button type="submit">Generate</button>
+    </form>
+    <div class="output-container">
+        <h2 class="outtext">Output:</h2>
+        <pre class="output">{{ output }}</pre>
+    </div>
+    <div class="confirm-container">
+        <button href="/confirmation" class="confirm">Confirm</button>
+    </div>
+</body>
+</html>
