@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for
 import pandas as pd
 
 app = Flask(__name__)
+app = Flask(__name__, static_folder='static')
 
 # Path to the Excel file
 excel_file_path = "C:\\Users\\Dhaarun\\Desktop\\ImagineerX\\ImagineerX\\get_calendar_info\\testdata.xlsx"

@@ -39,13 +39,22 @@ function readFileAsync(filePath) {
 
 // Helper function to parse time in HH:mm format
 function parseTime(timeString) {
+  if (!timeString) {
+    return null;
+  }
+
   const [hours, minutes] = timeString.split(':').map(Number);
-  const date = new Date();
-  date.setHours(hours);
-  date.setMinutes(minutes);
-  date.setSeconds(0); // Assuming seconds are not provided in the Excel file
-  return date;
+
+  if (isNaN(hours) || isNaN(minutes) || hours < 0 || hours > 23 || minutes < 0 || minutes > 59) {
+    console.error(`Invalid time format: ${timeString}`);
+    return null;
+  }
+
+  return new Date(2000, 0, 1, hours, minutes, 0);
 }
+
+
+
 
 // Function to convert decimal time to HH:mm format
 function convertDecimalToTime(decimalTime) {
@@ -53,11 +62,15 @@ function convertDecimalToTime(decimalTime) {
     return 'N/A';
   }
 
-  const totalMinutes = decimalTime * 24 * 60;
-  const hours = Math.floor(totalMinutes / 60);
-  const minutes = Math.round(totalMinutes % 60);
-  return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+  const hours = Math.floor(decimalTime);
+  const minutes = Math.round((decimalTime - hours) * 60);
+
+  const formattedTime = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+  console.log(`Converted decimal time ${decimalTime} to formatted time: ${formattedTime}`);
+
+  return formattedTime;
 }
+
 
 // Function to process data and return an object with user names and schedules
 function processExcelData(workbook) {
@@ -105,8 +118,9 @@ function processExcelData(workbook) {
         continue;
       }
 
-      const startTime = startTimeCell ? convertDecimalToTime(parseFloat(startTimeCell.v)) : 'N/A';
-      const endTime = endTimeCell ? convertDecimalToTime(parseFloat(endTimeCell.v)) : 'N/A';
+      // Convert the decimal time to HH:mm format
+      const startTime = convertDecimalToTime(parseFloat(startTimeCell.v));
+      const endTime = convertDecimalToTime(parseFloat(endTimeCell.v));
 
       userData[name][daysOfWeek[dayIndex]] = { startTime, endTime };
     }
@@ -114,6 +128,7 @@ function processExcelData(workbook) {
 
   return { userData };
 }
+
 
 // Function to check if a user is busy at a specific time
 function isUserBusy(userName, dateTime, userSchedules) {
