@@ -1,7 +1,7 @@
 # GitGud
 In today's dynamic work environment, coordinating meetings among team members has become increasingly challenging due to conflicting schedules. To address this issue, there is a need for an application or website that aggregates individual calendars and identifies common available times for scheduling informal meetings efficiently
 
-To run the website:
+Important:
 * install all the necessary packages, if you encounter any problems with running the code after the installation of the packages , feel free to contact us
 
 *To run the website, make sure to open the command prompt in the server.js directory and run:
