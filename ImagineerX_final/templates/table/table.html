@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predefined Excel Table</title>
+    <style>
+        body {
+            font-family: "Roboto", sans-serif;
+            background: #0e0e10;
+            color: #d2d2d2;
+            margin: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            transition: background 0.3s ease;
+        }
+        
+        h1 {
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 8px;
+            border: 1px solid #1e4f5d;
+            transition: background-color 0.3s ease;
+        }
+
+        th {
+            background-color: #3591aa;
+            color: #fff;
+        }
+
+        td {
+            background-color: #1a1a1c;
+            color: #d2d2d2;
+        }
+
+        td:hover {
+            background-color: #61dafb;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <h1>Your Workspace Schedules<br><p> </p><table>{{ table | safe }}</table></h1>
+</body>
+</html>
+
+        
+        
+        
+        
+        
+        
+        
+        
+    
+

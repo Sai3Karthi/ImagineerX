@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Schedule Checker</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+  <script src="availability.js"></script>
+</head>
+<!-- Update your HTML to include the new user list section -->
+<body class>
+  <div class="container">
+    <h2>Select a User:</h2>
+    <select id="userList"></select>
+    <h2>Select Date and Time:</h2>
+    <input type="datetime-local" id="dateTimeInput">
+    <input type="hidden" id="excelFile" value="ImagineerX_final\\get_calendar_info\\testdata.xlsx">
+    <button id="checkAvailabilityButton">Check Availability</button>
+    <div id="availabilityResult"></div>
+    <div id="availableUsers" class="user-list">
+      <h2>Available Users:</h2>
+      <ul id="availableUsersList"></ul>
+    </div>
+  </div>
+  
+</body>
+
+</html>

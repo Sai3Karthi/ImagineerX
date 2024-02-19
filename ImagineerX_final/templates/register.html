@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to </title>
+    <style>
+        body {
+            font-family: "Roboto", sans-serif;
+            background: #0e0e10;
+            color: #d2d2d2;
+            margin: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            transition: background 0.3s ease;
+        }
+        
+        .container {
+            max-width: 600px;
+            padding: 60px;
+            border-radius: 30px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            background-color: #1a1a1c;
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        h1, h2 {
+            color: #61dafb;
+            font-weight: bold;
+            margin-top: 0;
+            transition: color 0.3s ease;
+            font-size: 25px;
+        }
+        
+        p {
+            color: #d2d2d2;
+            font-size:15px;
+        }
+        
+        select,
+        input,
+        button {
+            margin: 10px;
+            padding: 10px 10px 10px 10px;
+            font-size: 15px;
+            border: 1px solid #30363b;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, #2d2f33, #202124);
+            color: #d2d2d2;
+        }
+        
+        button:hover {
+            background: linear-gradient(315deg, #303840, #202730);
+            padding: 10px 15px 10px 15px;
+            margin-left: 5px;
+        }
+        
+        button:active {
+            background: linear-gradient(180deg, #202730, #182026);
+        }
+        
+        /* Additional styles for business and professional buttons */
+        .account-type.business button:hover,
+        .account-type.professional button:hover {
+            background: linear-gradient(135deg, #303840, #202730);
+        }
+        
+        .account-type.business button:active,
+        .account-type.professional button:active {
+            background: linear-gradient(135deg, #202730, #182026);
+        }
+        
+        .disclaimer {
+            color: #777;
+        }
+        .gettt{
+            transition: all 0.16s;
+            color: #991edb;
+        }
+        .gettt:hover{
+            font-size: 37px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to <span class="gettt">GetGudWork</span></h1>
+        <p></p>
+        <form action="/login" method="get">
+            <div class="account-types">
+                <div class="account-type business">
+                    <h2>Business Account</h2>
+                    <p>Ideal for managing companies, schedule meetings and collaborate..</p>
+                    <button type="submit" class="btn btn-primary">Get Started</button> <!-- Modified action attribute -->
+                </div>
+            </div>
+        </form>
+        <form action="/login" method="get">
+            <div class="account-types">
+                <p></p>
+                <div class="account-type professional">
+                    <h2>Personal Account</h2>
+                    <p>Manage your workspace and connect with you colleges..</p>
+                    <button type="submit" class="btn btn-primary" >Get Started</button> <!-- Modified action attribute -->
+                </div>
+            </div>
+        </form>
+        <p class="disclaimer">Still unsure? <span class="contact"><u>contact us</u></span>.</p>
+    </div>
+</body>
+</html>

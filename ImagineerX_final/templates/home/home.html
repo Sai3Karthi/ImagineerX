@@ -1,0 +1,191 @@
+<style>
+body {
+    font-family: "Roboto", sans-serif;
+    background: #0e0e10;
+    color: #d2d2d2;
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    transition: background 0.3s ease;
+}
+
+.container {
+    max-width: 600px;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    background-color: #1a1a1c;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+h2 {
+    color: #61dafb;
+    font-weight: bold;
+    margin-top: 0;
+    transition: color 0.3s ease;
+}
+
+select,
+input,
+button {
+    margin: 10px;
+    padding: 12px;
+    border: 1px solid #3a6c95;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    background: linear-gradient(135deg, #2d2f33, #202124);
+    color: #d2d2d2;
+    align-self: center;
+    margin-left:220px;
+}
+
+button:hover {
+    background: linear-gradient(135deg, #303840, #202730);
+}
+
+button:active {
+    background: linear-gradient(135deg, #202730, #182026);
+}
+
+/* Dropdown in dark mode */
+select,
+select option {
+    background-color: #202124;
+    color: #d2d2d2;
+    border: 1px solid #30363b;
+}
+
+select:hover,
+select:focus,
+select option:hover,
+select option:focus {
+    background-color: #2d2f33;
+    color: #fff;
+}
+
+/* Hover effect for calendar button */
+#dateTimeInput:hover {
+    background: linear-gradient(135deg, #303840, #202730);
+}
+
+/* Hover effect for check availability button */
+#checkAvailabilityButton:hover {
+    background: linear-gradient(135deg, #303840, #202730);
+}
+
+/* Moving border effect for Check Availability button */
+#checkAvailabilityButton {
+    position: relative;
+    overflow: hidden;
+    border: none;
+}
+
+#checkAvailabilityButton::before {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(135deg, #303840, #202730);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease, height 0.3s ease;
+}
+
+/* Moving border effect for Check Availability button on hover */
+#checkAvailabilityButton:hover::before {
+    transform: scaleX(1);
+    transform-origin: right;
+    height: 100%;
+}
+
+/* Add this to your existing CSS */
+
+#availabilityResult {
+    margin-top: 20px;
+    font-weight: bold;
+    font-size: 18px;
+    color: #d2d2d2;
+}
+
+.code {
+    background-color: #f7f7f7;
+    border: 1px solid #30363b;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+/* Dark mode for calendar */
+body.dark-mode input[type="datetime-local"] {
+    background: linear-gradient(135deg, #2d2f33, #202124);
+    color: #d2d2d2;
+    border: 1px solid #30363b;
+}
+
+/* Dark mode for calendar dropdown */
+body.dark-mode input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+
+body.dark-mode input[type="datetime-local"]::-webkit-datetime-edit,
+body.dark-mode input[type="datetime-local"]::-webkit-datetime-edit-fields-wrapper,
+body.dark-mode input[type="datetime-local"]::-webkit-datetime-edit-text,
+body.dark-mode input[type="datetime-local"]::-webkit-datetime-edit-month-field,
+body.dark-mode input[type="datetime-local"]::-webkit-datetime-edit-day-field,
+body.dark-mode input[type="datetime-local"]::-webkit-datetime-edit-year-field {
+    color: #d2d2d2;
+}
+
+body.dark-mode input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+    background: linear-gradient(135deg, #2d2f33, #202124);
+    border: 1px solid #30363b;
+    border-radius: 4px;
+    padding: 2px;
+    cursor: pointer;
+}
+
+body.dark-mode input[type="datetime-local"]::-webkit-inner-spin-button,
+body.dark-mode input[type="datetime-local"]::-webkit-clear-button {
+    filter: invert(1);
+}
+
+body.dark-mode input[type="datetime-local"]::-webkit-calendar-picker-indicator:hover {
+    background: linear-gradient(135deg, #2d2f33, #202124);
+    border-color: #61dafb;
+}
+
+/* Update this to handle the transition effect for the list of available users */
+#availableUsersList {
+    background-color: #283038;
+    color: #fff;
+    border-radius: 5px;
+    padding: 20px;
+    margin-top: 20px;
+    display: none;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Update this to handle the transition effect for the list of available users */
+#availableUsersList.visible {
+    display: block;
+}
+
+</style>
+<div class="container">
+    <div class="main-content">
+        <div class="top-bar">
+            <a href="http://localhost:3000"><button class="button" id="userAvailabilityButton">User Availability</button></a>
+        </div>
+        <h1 class="title">Welcome to Your Meeting Scheduler</h1>
+        <form action="/table" method="get">
+            <button href="submit" class="button">View Schedule</button>
+        </form>
+        <form action="/aicaller" method="get">
+            <button type="submit" class="button">+ New Meeting</button>
+        </form>
+    </div>
+</div>
+
